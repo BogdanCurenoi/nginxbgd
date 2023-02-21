@@ -15,7 +15,7 @@ jobs:
       - name: Debug env
         run: echo $DOCKERHUB_USER_NAME
       - name: Concatenate envs
-        run: export IMAGE_NAME=bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}
+        run: echo "IMAGE_NAME=bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}" >> $GITHUB_ENV
       - name: Debug env 2
         run: echo $IMAGE_NAME
       - name: Login into Docker
