@@ -1,0 +1,18 @@
+name: First Action
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$(date +%x_%H:%M:%S:%N)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v35
+      - name: Login into Docker
+        run: docker login -u $DOCKERHUB_USER_NAME -p $DOCKERHUB_PASSWORD
+      - name: Debug docker info
+        run: docker info
