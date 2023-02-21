@@ -10,10 +10,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DOCKERHUB_USER_NAME: ${{env.DOCKERHUB_USER_NAME}}
-      DOCKERHUB_PASSWORD: ${{env.DOCKERHUB_PASSWORD}}
     steps:
+      - name: Debug env
+        run: echo $DOCKERHUB_USER_NAME
       - name: Login into Docker
         run: docker login -u $DOCKERHUB_USER_NAME -p $DOCKERHUB_PASSWORD
       - name: Debug docker info
