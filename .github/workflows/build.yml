@@ -13,10 +13,12 @@ jobs:
       IMAGE_NAME: bogdancurenoi/runners:nginxbgd_
       DOCKERHUB_USER_NAME: bogdancurenoi
     steps:
+      - name: Set current date as env variable
+        run: echo "DOCK_DATE=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Debug env
         run: echo $DOCKERHUB_USER_NAME
       - name: Concatenate envs
-        run: IMAGE_NAME+=${{ github.job_workflow_sha }}
+        run: IMAGE_NAME+=${{ env.DOCK_DATE }}
       - name: Debug env 2
         run: echo $IMAGE_NAME
       - name: Login into Docker
