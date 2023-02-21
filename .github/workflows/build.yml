@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$(date +%x_%H:%M:%S:%N)
+  IMAGE_NAME: bogdancurenoi/runners:nginxbgd_${{date +%x_%H:%M:%S:%N}}
   DOCKERHUB_USER_NAME: bogdancurenoi
 
 jobs:
