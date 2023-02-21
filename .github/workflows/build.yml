@@ -18,8 +18,13 @@ jobs:
         run: echo "DOCK_DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
       - name: Concatenate envs
         run: echo "IMAGE_NAME=bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}" >> $GITHUB_ENV
-      - name: Export image name
-        run: export IMAGE_NAME=${{ vars.IMAGE_NAME }}
+      - name: Store image name
+        run: echo $IMAGE_NAME > image_name.txt  
+      - name: Upload image name as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: imgname
+          path: image_name.txt
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -40,5 +45,11 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+      - name: Get image name through artifact 
+        uses: actions/download-artifact@v1
+        with:
+          name: imgname
+      - name: Store image name for this job 
+        run: IMAGE_NAME_NEW=cat imgname/image_name.txt  
       - name: Debug variable
         run: echo $IMAGE_NAME
