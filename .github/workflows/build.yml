@@ -11,7 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v35
       - name: Login into Docker
         run: docker login -u $DOCKERHUB_USER_NAME -p $DOCKERHUB_PASSWORD
       - name: Debug docker info
