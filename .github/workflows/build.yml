@@ -11,6 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Set current date as env variable
         run: echo "DOCK_DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
       - name: Debug env
