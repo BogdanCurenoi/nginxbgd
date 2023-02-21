@@ -43,6 +43,7 @@ jobs:
   
   job_02:
     name: deploy
+    needs: job_01
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
