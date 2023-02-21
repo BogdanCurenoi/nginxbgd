@@ -55,6 +55,7 @@ jobs:
         with:
           name: imgname
       - name: Store image name for this job 
-        run: IMAGE_NAME_NEW=cat imgname/image_name.txt  
+        run: cat imgname/image_name.txt >> $GITHUB_ENV
       - name: Debug variable
-        run: echo $IMAGE_NAME
+        run: echo ${{ env.IMAGE_NAME }}
+ 
