@@ -6,6 +6,7 @@ on:
 
 env:
   IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$(date +%x_%H:%M:%S:%N)
+  DOCKERHUB_USER_NAME: bogdancurenoi
 
 jobs:
   build:
@@ -13,6 +14,8 @@ jobs:
     steps:
       - name: Debug env
         run: echo $DOCKERHUB_USER_NAME
+      - name: Debug env 2
+        run: echo $IMAGE_NAME
       - name: Login into Docker
         run: docker login -u $DOCKERHUB_USER_NAME -p $DOCKERHUB_PASSWORD
       - name: Debug docker info
