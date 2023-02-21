@@ -21,6 +21,8 @@ jobs:
         run: echo "IMAGE_NAME=bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}" >> $GITHUB_ENV
       - name: Store image name
         run: echo $IMAGE_NAME > image_name.txt  
+      - name: Give permisions on txt file 
+        run: chmod 777 image_name.txt 
       - name: Upload image name as artifact
         uses: actions/upload-artifact@v1
         with:
