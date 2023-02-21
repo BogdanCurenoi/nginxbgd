@@ -10,13 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_asdasd
+      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_
       DOCKERHUB_USER_NAME: bogdancurenoi
     steps:
       - name: Debug env
         run: echo $DOCKERHUB_USER_NAME
-      - name: Debug env 2
-        run: echo $GITHUB_WORKFLOW_SHA
+      - name: Concatenate envs
+        run: IMAGE_NAME+="$GITHUB_WORKFLOW_SHA"
       - name: Login into Docker
         run: docker login -u $DOCKERHUB_USER_NAME -p $DOCKERHUB_PASSWORD
       - name: Debug docker info
