@@ -32,11 +32,11 @@ jobs:
         with:
           push: true
           tags: bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}
-      # - name: Login into Docker
-      #   run: docker login -u ${{ vars.DOCKERHUB_USER_NAME }} -p ${{ vars.DOCKERHUB_PASSWORD }}
-      # - name: Debug docker info
-      #   run: docker info
-      # - name: Build docker image 
-      #   run: docker build -t $IMAGE_NAME .
-      # - name: Push docker image
-      #   run: docker push $IMAGE_NAME 
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Debug variable
+        run: echo $IMAGE_NAME
