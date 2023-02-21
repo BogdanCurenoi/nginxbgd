@@ -9,19 +9,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_
-      DOCKERHUB_USER_NAME: bogdancurenoi
     steps:
       - name: Set current date as env variable
         run: echo "DOCK_DATE=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Debug env
         run: echo $DOCKERHUB_USER_NAME
       - name: Concatenate envs
-        run: IMAGE_NAME+=${{ env.DOCK_DATE }}
+        run: export IMAGE_NAME=bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}
       - name: Debug env 2
         run: echo $IMAGE_NAME
       - name: Login into Docker
-        run: docker login -u $DOCKERHUB_USER_NAME -p $DOCKERHUB_PASSWORD
+        run: docker login -u ${{ vars.DOCKERHUB_USER_NAME }} -p ${{ vars.DOCKERHUB_PASSWORD }}
       - name: Debug docker info
         run: docker info
