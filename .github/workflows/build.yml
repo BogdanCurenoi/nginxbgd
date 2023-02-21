@@ -4,14 +4,17 @@ on:
   push:
     branches: [ main ]
 
-env:
-  IMAGE_NAME: bogdancurenoi/runners:nginxbgd_${{$(date +%x_%H:%M:%S:%N)}}
-  DOCKERHUB_USER_NAME: bogdancurenoi
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$DOCK_DATE
+      DOCKERHUB_USER_NAME: bogdancurenoi
     steps:
+      - name: Set current date as env variable
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $DOCK_DATE
       - name: Debug env
         run: echo $DOCKERHUB_USER_NAME
       - name: Debug env 2
