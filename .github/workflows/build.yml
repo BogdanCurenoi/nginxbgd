@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$GITHUB_WORKFLOW_SHA
+      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_${{GITHUB_WORKFLOW_SHA}}
       DOCKERHUB_USER_NAME: bogdancurenoi
     steps:
       - name: Debug env
