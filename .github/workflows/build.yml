@@ -9,7 +9,8 @@ env:
   DOCK_DATE: ""
 
 jobs:
-  build:
+  job_01:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -40,7 +41,8 @@ jobs:
           push: true
           tags: bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}
   
-  deploy:
+  job_02:
+    name: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
