@@ -6,7 +6,7 @@ on:
 
 env:
   IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$(date +%x_%H:%M:%S:%N)
-  TEST_VAR: ${{var.DOCKERHUB_USER_NAME}}
+  TEST_VAR: ${{variable.DOCKERHUB_USER_NAME}}
 
 jobs:
   build:
