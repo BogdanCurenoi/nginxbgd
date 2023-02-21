@@ -10,11 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$DOCK_DATE
+      IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$NEW_ENV
       DOCKERHUB_USER_NAME: bogdancurenoi
     steps:
       - name: Set current date as env variable
-        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $DOCK_DATE
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $NEW_ENV
       - name: Debug env
         run: echo $DOCKERHUB_USER_NAME
       - name: Debug env 2
