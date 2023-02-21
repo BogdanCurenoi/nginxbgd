@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+env:
+  IMAGE_NAME: ""
+  DOCK_DATE: ""
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,7 +17,8 @@ jobs:
       - name: Set current date as env variable
         run: echo "DOCK_DATE=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
       - name: Concatenate envs
-        run: echo "${{ vars.IMAGE_NAME }}=bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}" >> $GITHUB_ENV
+        id: dock-image-name
+        run: echo "IMAGE_NAME=bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}" >> $GITHUB_OUTPUT
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -35,4 +40,4 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Debug variable
-        run: echo ${{ vars.IMAGE_NAME }}
+        run: echo ${{ steps.dock-image-name.outputs.IMAGE_NAME }}
