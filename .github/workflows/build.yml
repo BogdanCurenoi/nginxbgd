@@ -2,7 +2,7 @@ name: First Action
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 env:
   IMAGE_NAME: bogdancurenoi/runners:nginxbgd_$(date +%x_%H:%M:%S:%N)
