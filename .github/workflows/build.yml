@@ -6,6 +6,7 @@ on:
 
 env:
   IMAGE_NAME: ""
+  DOCK_DATE: ""
 
 jobs:
   build:
@@ -30,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: $IMAGE_NAME  
+          tags: bogdancurenoi/runners:nginxbgd_${{ env.DOCK_DATE }}
       # - name: Login into Docker
       #   run: docker login -u ${{ vars.DOCKERHUB_USER_NAME }} -p ${{ vars.DOCKERHUB_PASSWORD }}
       # - name: Debug docker info
