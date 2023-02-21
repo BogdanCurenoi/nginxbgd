@@ -4,7 +4,8 @@ on:
   push:
     branches: [ main ]
 
-
+env:
+  IMAGE_NAME:
 
 jobs:
   build:
@@ -22,3 +23,7 @@ jobs:
         run: docker login -u ${{ vars.DOCKERHUB_USER_NAME }} -p ${{ vars.DOCKERHUB_PASSWORD }}
       - name: Debug docker info
         run: docker info
+      - name: Build docker image 
+        run: docker build -t $IMAGE_NAME .
+      - name: Push docker image
+        run: docker push $IMAGE_NAME 
